@@ -76,6 +76,10 @@ dependencies {
     // Schema registry dependencies required due to https://github.com/pravega/flink-connectors/issues/440
     flinkShadowJar group: 'io.pravega', name: 'schemaregistry-serializers', classifier: 'all', version: schemaRegistryVersion
 
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/fluent-hc
+    implementation group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.13'
+
+
     if (includeHadoopS3.toBoolean()) {
         compile "org.apache.flink:flink-s3-fs-hadoop:${flinkVersion}"
         compile "com.amazonaws:aws-java-sdk:${awsSDKVersion}"
