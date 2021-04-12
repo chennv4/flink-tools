@@ -23,7 +23,7 @@ public class StreamToDetectAnomalyJob extends AbstractJob {
     private static SlackNotifier notifier = new SlackNotifier(
             "Chenna",
             "#nautilus-lab-alerts",
-            "https://hooks.slack.com/services/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",
+            "",
             true
     );
 
