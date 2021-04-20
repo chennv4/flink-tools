@@ -77,7 +77,8 @@ dependencies {
     flinkShadowJar group: 'io.pravega', name: 'schemaregistry-serializers', classifier: 'all', version: schemaRegistryVersion
 
     // https://mvnrepository.com/artifact/org.apache.httpcomponents/fluent-hc
-    implementation group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.13'
+    flinkShadowJar group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.13'
+    //compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 
 
     if (includeHadoopS3.toBoolean()) {

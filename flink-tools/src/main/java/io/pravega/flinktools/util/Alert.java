@@ -15,11 +15,11 @@ public class Alert implements Serializable {
 
     @Override
     public String toString() {
-        return "Alert{" +
-                "AlertDescription='" + AlertDescription + '\'' +
-                ", poNumber='" + poNumber + '\'' +
-                ", status='" + status + '\'' +
-                ", date=" + date +
-                '}';
+        return "" +
+                "*Alert :*'" + AlertDescription + '\'' + System.lineSeparator() + 
+                ",*poNumber :*'" + poNumber + '\'' + System.lineSeparator() + 
+                ",*status :* '" + status + '\'' + System.lineSeparator() + 
+                ",*date :*'" + date + '\'' + System.lineSeparator() +
+                "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@";
     }
 }

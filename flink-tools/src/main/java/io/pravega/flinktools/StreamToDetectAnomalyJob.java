@@ -22,7 +22,7 @@ public class StreamToDetectAnomalyJob extends AbstractJob {
     final private static Logger log = LoggerFactory.getLogger(StreamToDetectAnomalyJob.class);
     private static SlackNotifier notifier = new SlackNotifier(
             "Chenna",
-            "#nautilus-lab-alerts",
+            "#chenna_alerts",
             "",
             true
     );
@@ -34,8 +34,8 @@ public class StreamToDetectAnomalyJob extends AbstractJob {
      */
     public static void main(String... args) throws Exception {
         AppConfiguration config = new AppConfiguration(args);
-        log.info("config: {}", config);
-        StreamToConsoleJob job = new StreamToConsoleJob(config);
+        log.info("@@@@@@ StreamToDetectAnomalyJob config: {}", config);
+        StreamToDetectAnomalyJob job = new StreamToDetectAnomalyJob(config);
         job.run();
     }
 
@@ -57,8 +57,8 @@ public class StreamToDetectAnomalyJob extends AbstractJob {
                     .forStream(inputStreamConfig.getStream(), startStreamCut, endStreamCut)
                     .withDeserializationSchema(new SimpleStringSchema())
                     .build();
-            final DataStream<String> lines = env.addSource(flinkPravegaReader);
-            lines.printToErr();
+            DataStream<String> lines = env.addSource(flinkPravegaReader);
+            //lines.printToErr();
 
             DataStream<Alert> alerts = lines.flatMap(new AnomalyDetector());
             alerts.printToErr();
@@ -74,13 +74,16 @@ public class StreamToDetectAnomalyJob extends AbstractJob {
      * A simple rule-based anomaly detector.
      * It considers a temperature of >100 deg to be an anomaly and outputs an Alert event.
      */
-    public static class AnomalyDetector implements FlatMapFunction<String, Alert> {
+    public  class AnomalyDetector implements FlatMapFunction<String, Alert> {
         @Override
         public void flatMap(String message, Collector<Alert> out) throws JsonProcessingException {
-            ObjectMapper mapper = new ObjectMapper();
+            log.info("@@@@ START  @@@@");
+	    ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(message);
             String status = node.get("status").asText();
             String payment = node.get("payment").asText();
+
+	    log.info("@@@@ NODE  @@@@ : {}", node.toString());
 
             if(payment.equalsIgnoreCase("FAILED"))
             {
@@ -88,7 +91,8 @@ public class StreamToDetectAnomalyJob extends AbstractJob {
                 alert.AlertDescription = "Payment Failed";
                 alert.poNumber = node.get("poNumber").asText();
                 alert.status = node.get("status").asText();
-                alert.date = node.get("date").asText();
+                alert.date = node.get("CreateDate").asText();
+		log.info("@@@@ PAYMENT ALERT @@@@ : {}", alert.toString());
                 notifier.notify(alert.toString());
                 out.collect(alert);
             }
@@ -99,7 +103,8 @@ public class StreamToDetectAnomalyJob extends AbstractJob {
                 alert.AlertDescription = "Payment Failed";
                 alert.poNumber = node.get("poNumber").asText();
                 alert.status = node.get("status").asText();
-                alert.date = node.get("date").asText();
+                alert.date = node.get("CreateDate").asText();
+		log.info("@@@@ PO ALERT @@@@ : {}", alert.toString());
                 notifier.notify(alert.toString());
                 out.collect(alert);
             }
