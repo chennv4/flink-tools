@@ -78,7 +78,10 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.apache.httpcomponents/fluent-hc
     flinkShadowJar group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.13'
-    //compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+
+    // https://mvnrepository.com/artifact/org.apache.flink/flink-connector-rabbitmq
+    flinkShadowJar group: 'org.apache.flink', name: 'flink-connector-rabbitmq_2.12', version: '1.13.0'
+
 
 
     if (includeHadoopS3.toBoolean()) {
