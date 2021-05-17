@@ -14,5 +14,5 @@ appParameters:
   rabbitmqPassword: "password"
   rabbitmqPort: 5672
   durableQueue: false
-  output-stream: "sample1"
+  output-stream: "rmq-messages"
   output-minNumSegments: 2

@@ -24,7 +24,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.rabbitmq.RMQSource;
 import org.apache.flink.streaming.connectors.rabbitmq.common.RMQConnectionConfig;
-import org.apache.flink.streaming.util.serialization.SimpleStringSchema;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.util.Collector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,7 +81,7 @@ public class RabbitMQToPravegaJob extends AbstractJob {
 
             DataStream<String> dataStream = env.addSource(new RMQSource<String>(connectionConfig,
                     queueName,
-                    new SimpleStringSchema()));
+                    new org.apache.flink.api.common.serialization.SimpleStringSchema()));
 
             DataStream<SampleEvent> pairs = dataStream.flatMap(new TextLengthCalculator())
                     .setParallelism(6);
