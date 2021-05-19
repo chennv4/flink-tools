@@ -71,6 +71,16 @@ public class RabbitMQToPravegaJob extends AbstractJob {
             log.info("dataSizeBytes: {}", dataSizeBytes);
             final AppConfiguration.StreamConfig outputStreamConfig = getConfig().getStreamConfig("output");
             log.info("output stream: {}", outputStreamConfig);
+
+	    exchangeName = getConfig().getParams().get("exchangeName", ""); // "demo"
+            queueName = getConfig().getParams().get("queueName", ""); // "demo-q"
+            rabbitmqHostname = getConfig().getParams().get("rabbitmqHostname", ""); // "10.243.37.7"
+            rabbitmqVirtualHost = getConfig().getParams().get("rabbitmqVirtualHost", ""); // "/"
+            rabbitmqUsername = getConfig().getParams().get("rabbitmqUsername", ""); // "admin"
+            rabbitmqPassword = getConfig().getParams().get("rabbitmqPassword", ""); // "password"
+            rabbitmqPort = getConfig().getParams().getInt("rabbitmqPort", 5672); // 5672
+            durableQueue =  getConfig().getParams().getBoolean("durableQueue", false);
+
             createStream(outputStreamConfig);
 
             final StreamExecutionEnvironment env = initializeFlinkStreaming();

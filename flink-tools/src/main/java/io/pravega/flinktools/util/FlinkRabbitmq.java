@@ -14,14 +14,14 @@ import java.io.IOException;
 
 public class FlinkRabbitmq extends RMQSource {
 
-    public static String exchangeName          = "demo";
-    public static String queueName             = "demo-q";
-    public static String rabbitmqHostname      = "10.243.37.7";
-    public static String rabbitmqVirtualHost   = "/";
-    public static String rabbitmqUsername      = "admin";
-    public static String rabbitmqPassword      = "password";
-    public static Integer rabbitmqPort         = 5672;
-    public static boolean durableQueue         = false;
+    public static String exchangeName;
+    public static String queueName;
+    public static String rabbitmqHostname;
+    public static String rabbitmqVirtualHost;
+    public static String rabbitmqUsername;
+    public static String rabbitmqPassword;
+    public static Integer rabbitmqPort;
+    public static boolean durableQueue;
 
     public static Logger logger = LoggerFactory.getLogger(FlinkRabbitmq.class);
 

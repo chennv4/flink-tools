@@ -14,6 +14,10 @@ metadata:
 spec:
   imageRef:
     name: {{ $.Values.imageRef.name }}
+   
+  metrics:
+    name: project-metrics
+
   localStorage:
     replicas: {{ .Values.localStorage.replicas }}
     volumeClaimTemplate:

@@ -31,15 +31,18 @@ jobManager:
   replicas: 1
 
 taskManager:
-  numberOfTaskSlots: 1
+  numberOfTaskSlots: 8
   replicas: 1
   resources:
     requests:
-      memory: "4Gi"
+      memory: "8Gi"
       cpu: "1000m"
     limits:
-      memory: "4Gi"
+      memory: "8Gi"
       cpu: "4000m"
+
+metrics:
+  name: "project-metrics"      
 
 clusterConfiguration:
   restart-strategy: "fixed-delay"

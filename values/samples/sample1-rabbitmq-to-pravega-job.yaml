@@ -6,6 +6,8 @@
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
 appParameters:
+  checkpointIntervalMs: "5000"
+  checkpointTimeoutMs: "3600000"  # 1 hr
   exchangeName: "demo"
   queueName: "demo-q"
   rabbitmqHostname: "10.243.37.7"

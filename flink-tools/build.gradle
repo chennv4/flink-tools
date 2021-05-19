@@ -82,7 +82,7 @@ dependencies {
     flinkShadowJar group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.13'
 
     // https://mvnrepository.com/artifact/org.apache.flink/flink-connector-rabbitmq
-    flinkShadowJar group: 'org.apache.flink', name: 'flink-connector-rabbitmq_2.12', version: '1.11.3'
+    flinkShadowJar group: 'org.apache.flink', name: 'flink-connector-rabbitmq_2.12', version: '1.10.2'
 
 
 
